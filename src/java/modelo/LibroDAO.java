@@ -78,18 +78,20 @@ public class LibroDAO {
         }
     }
     
-    public void borarLibro(int id){
+    /*public static ResultSet borrarLibro(int id){
         Statement st;
-        ResultSet res;
+        ResultSet res = null;
         
-        String sql = "delete * from libros where id_libro='"+id+"';";
+        String sql = "delete from libros where id_libro='"+id+"'";
   
         Conexion conexion = new Conexion();
         
         try {
             
+            
             st = conexion.getConexion().createStatement(); 
             res = st.executeQuery(sql);
+            
             st.close();
             conexion.cerrarConexion();
         } catch (SQLException e) {
@@ -97,6 +99,6 @@ public class LibroDAO {
             System.out.println(e);
             
         }
-
-    }
+        return res;
+    }*/
 }

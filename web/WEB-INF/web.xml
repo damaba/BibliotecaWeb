@@ -20,6 +20,14 @@
         <servlet-name>InsertarAutor</servlet-name>
         <url-pattern>/InsertarAutor</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>BorrarLibro</servlet-name>
+        <servlet-class>controlador.BorrarLibro</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BorrarLibro</servlet-name>
+        <url-pattern>/BorrarLibro</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
