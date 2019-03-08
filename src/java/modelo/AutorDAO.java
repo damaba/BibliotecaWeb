@@ -15,13 +15,13 @@ import java.util.ArrayList;
  *
  * @author David
  */
-public class LibroDAO {
-    public static ArrayList<Libro> consultarLibro(){
+public class AutorDAO {
+    public static ArrayList<Autor> consultarAutor(){
         Statement st;
         ResultSet res;
-        ArrayList<Libro> libros = new ArrayList<>();
+        ArrayList<Autor> autores = new ArrayList<>();
         
-        String sql = "select * from libros JOIN autor ON libros.autor=autor.id_autor;";
+        String sql = "select * from autor;";
   
         Conexion conexion = new Conexion();
         
@@ -31,7 +31,7 @@ public class LibroDAO {
             res = st.executeQuery(sql);
             while (res.next()){
                 
-                libros.add(new Libro(res.getInt("id_libro"),res.getString("titulo"),res.getInt("paginas"),res.getString("nombre")));
+                autores.add(new Autor(res.getInt("id_autor"),res.getString("nombre")));
                 
             }
             st.close();
@@ -42,13 +42,13 @@ public class LibroDAO {
             
         }
 
-        return libros;  
+        return autores;  
     }
     
-    public static int insertarLibro(String titulo,int paginas, int autor){
+    public static int insertarAutor(String nombre){
         
         // Cadena con la consulta parametrizada
-        String sql = "insert into libros (titulo,paginas,autor) values (?,?,?)";
+        String sql = "insert into autor (nombre) values (?)";
 
         Conexion conexion = new Conexion();
         
@@ -57,9 +57,7 @@ public class LibroDAO {
         try { 
             prest = conexion.getConexion().prepareStatement(sql);
 
-            prest.setString(1, titulo);
-            prest.setInt(2,paginas);
-            prest.setInt(3,autor);
+            prest.setString(1, nombre);
 
             // Ejecutamos la sentencia de inserción preparada anteriormente
             int nfilas = prest.executeUpdate();
@@ -72,7 +70,7 @@ public class LibroDAO {
             // La inserción se realizó con éxito, devolvemos filas afectadas
             return nfilas;
         } catch (SQLException e) {
-            System.out.println("Problemas durante la inserción de datos en la tabla libros");
+            System.out.println("Problemas durante la inserción de datos en la tabla autor");
             System.out.println(e);
             return -1;
         }

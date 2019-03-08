@@ -13,6 +13,11 @@ public class Autor {
     public int id;
     public String nombre;
 
+    public Autor(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }
