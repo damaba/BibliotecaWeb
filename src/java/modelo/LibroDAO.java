@@ -77,4 +77,26 @@ public class LibroDAO {
             return -1;
         }
     }
+    
+    public void borarLibro(int id){
+        Statement st;
+        ResultSet res;
+        
+        String sql = "delete * from libros where id_libro='"+id+"';";
+  
+        Conexion conexion = new Conexion();
+        
+        try {
+            
+            st = conexion.getConexion().createStatement(); 
+            res = st.executeQuery(sql);
+            st.close();
+            conexion.cerrarConexion();
+        } catch (SQLException e) {
+            System.out.println("Problemas durante la consulta en tabla libros");
+            System.out.println(e);
+            
+        }
+
+    }
 }
